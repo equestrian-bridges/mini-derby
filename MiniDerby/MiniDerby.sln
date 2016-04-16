@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniDerby", "MiniDerby\MiniDerby.csproj", "{EA3BCF1A-8C6D-49A4-8A74-F224CD1BFD22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniDerby.Logic", "MiniDerby.Logic\MiniDerby.Logic.csproj", "{6D4A9942-790E-4635-A89F-35F158D4081F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniDerby.Data", "MiniDerby.Data\MiniDerby.Data.csproj", "{5CA3D09B-4569-4E21-8FA4-0853FBDEF7D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{EA3BCF1A-8C6D-49A4-8A74-F224CD1BFD22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA3BCF1A-8C6D-49A4-8A74-F224CD1BFD22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA3BCF1A-8C6D-49A4-8A74-F224CD1BFD22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D4A9942-790E-4635-A89F-35F158D4081F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4A9942-790E-4635-A89F-35F158D4081F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D4A9942-790E-4635-A89F-35F158D4081F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D4A9942-790E-4635-A89F-35F158D4081F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CA3D09B-4569-4E21-8FA4-0853FBDEF7D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA3D09B-4569-4E21-8FA4-0853FBDEF7D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA3D09B-4569-4E21-8FA4-0853FBDEF7D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA3D09B-4569-4E21-8FA4-0853FBDEF7D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

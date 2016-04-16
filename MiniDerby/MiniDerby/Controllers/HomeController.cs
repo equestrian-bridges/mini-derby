@@ -26,5 +26,10 @@ namespace MiniDerby.Controllers
 
 			return View();
 		}
+
+		public ActionResult Horses()
+		{
+			return View();
+		}
 	}
 }

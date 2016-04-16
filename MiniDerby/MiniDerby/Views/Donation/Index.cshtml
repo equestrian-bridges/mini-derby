@@ -1,0 +1,15 @@
+﻿@model List<MiniDerby.Data.Horse>
+
+@{
+    ViewBag.Title = "Donations";
+}
+
+<h2>Donation Home</h2>
+
+<ul>
+	@foreach (var horse in Model)
+	{
+		<li>@horse.Name</li>
+	}
+</ul>
+
