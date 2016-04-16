@@ -23,5 +23,17 @@ namespace MiniDerby.Logic
 
             Context.SaveChanges();
         }
+
+        public void LogError(String title, String message)
+        {
+            Context.Errors.Add(new Error
+            {
+                ErrorDate = DateTime.Now,
+                ErrorMessage = title,
+                StackTrace = message
+            });
+
+            Context.SaveChanges();
+        }
     }
 }
