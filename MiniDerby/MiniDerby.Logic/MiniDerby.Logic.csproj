@@ -79,8 +79,8 @@
   <ItemGroup>
     <Compile Include="BaseLogic.cs" />
     <Compile Include="DonationLogic.cs" />
-    <Compile Include="Logging.cs" />
     <Compile Include="EventLogic.cs" />
+    <Compile Include="Logging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
