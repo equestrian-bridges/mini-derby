@@ -17,20 +17,25 @@ namespace MiniDerby.Controllers
     public class IPNController : BaseController
     {
         [HttpPost]
-        public EmptyResult PayPalPaymentNotification(PayPalCheckoutInfo payPalCheckoutInfo)
+        public ActionResult PayPalPaymentNotification(PayPalCheckoutInfo payPalCheckoutInfo)
         {
             byte[] parameters = Request.BinaryRead(Request.ContentLength);
-            
+
             if (parameters != null)
             {
+                // Set the first parameter to false when putting in production
                 if (GetVerificationCode(true, parameters) == "VERIFIED")
                 {
                     var horseId = Int32.Parse(payPalCheckoutInfo.custom);
                     this.DonationLogic.SaveDonation(payPalCheckoutInfo.txn_id, payPalCheckoutInfo.first_name, payPalCheckoutInfo.last_name, payPalCheckoutInfo.payer_email, payPalCheckoutInfo.Total, horseId);
+
+                    return new EmptyResult();
                 }
             }
 
-            return new EmptyResult();
+            LoggingLogic.LogError("A bad request came from PayPal", Encoding.ASCII.GetString(parameters));
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         private string GetVerificationCode(Boolean isSandbox, Byte[] parameters)
