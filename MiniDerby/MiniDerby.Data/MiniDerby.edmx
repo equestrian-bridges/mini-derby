@@ -38,7 +38,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__Donations__Horse__4F7CD00D">
           <End Role="Horses" Type="Self.Horses" Multiplicity="0..1" />
@@ -76,6 +77,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sponsors_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="Sponsors" Type="Self.Sponsors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sponsors">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MiniDerbyDataStoreContainer">
           <EntitySet Name="Donations" EntityType="Self.Donations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
@@ -92,6 +105,10 @@
           <AssociationSet Name="FK__Horses__SponsorI__46E78A0C" Association="Self.FK__Horses__SponsorI__46E78A0C">
             <End Role="Sponsors" EntitySet="Sponsors" />
             <End Role="Horses" EntitySet="Horses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sponsors_Events" Association="Self.FK_Sponsors_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Sponsors" EntitySet="Sponsors" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -114,6 +131,10 @@
           <AssociationSet Name="FK__Horses__SponsorI__46E78A0C" Association="MiniDerby.Data.FK__Horses__SponsorI__46E78A0C">
             <End Role="Sponsor" EntitySet="Sponsors" />
             <End Role="Horse" EntitySet="Horses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sponsors_Events" Association="MiniDerby.Data.FK_Sponsors_Events">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Sponsor" EntitySet="Sponsors" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Horse">
@@ -148,14 +169,17 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EventDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Horses" Relationship="MiniDerby.Data.FK__Horses__EventId__412EB0B6" FromRole="Event" ToRole="Horse" />
+          <NavigationProperty Name="Sponsors" Relationship="MiniDerby.Data.FK_Sponsors_Events" FromRole="Event" ToRole="Sponsor" />
         </EntityType>
         <EntityType Name="Sponsor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Horses" Relationship="MiniDerby.Data.FK__Horses__SponsorI__46E78A0C" FromRole="Sponsor" ToRole="Horse" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="MiniDerby.Data.FK_Sponsors_Events" FromRole="Sponsor" ToRole="Event" />
         </EntityType>
         <Association Name="FK__Donations__Horse__4F7CD00D">
           <End Type="MiniDerby.Data.Horse" Role="Horse" Multiplicity="0..1" />
@@ -190,6 +214,18 @@
             </Principal>
             <Dependent Role="Horse">
               <PropertyRef Name="SponsorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sponsors_Events">
+          <End Type="MiniDerby.Data.Event" Role="Event" Multiplicity="1" />
+          <End Type="MiniDerby.Data.Sponsor" Role="Sponsor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sponsor">
+              <PropertyRef Name="EventId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -233,6 +269,7 @@
           <EntitySetMapping Name="Sponsors">
             <EntityTypeMapping TypeName="MiniDerby.Data.Sponsor">
               <MappingFragment StoreEntitySet="Sponsors">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

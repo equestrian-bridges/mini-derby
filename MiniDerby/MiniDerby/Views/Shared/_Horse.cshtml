@@ -1,0 +1,16 @@
+﻿@model MiniDerby.Data.Horse
+
+<div class="funny-boxes funny-boxes-left-blue" style="margin: 5px;">
+	<div class="row">
+		<div class="col-md-4 funny-boxes-img">
+			<img class="img-responsive" src="@String.Format("https://miniderby.blob.core.windows.net/horse/{0}_headshot.png", Model.Id)" alt="">
+		</div>
+		<div class="col-md-8">
+			<h2>
+				@Model.Name
+				<small>@Model.Donations.Sum(x => x.Amount).Value.ToString("C")</small>
+			</h2>
+			<a href="javascript:void(0)" class="btn btn-primary">Place a Donation Bet</a>
+		</div>
+	</div>
+</div>
