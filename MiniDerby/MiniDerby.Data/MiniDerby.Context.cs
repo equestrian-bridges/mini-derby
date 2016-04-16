@@ -26,5 +26,8 @@ namespace MiniDerby.Data
         }
     
         public virtual DbSet<Horse> Horses { get; set; }
+        public virtual DbSet<Donation> Donations { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<Sponsor> Sponsors { get; set; }
     }
 }

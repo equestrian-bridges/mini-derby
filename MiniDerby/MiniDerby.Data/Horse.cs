@@ -14,9 +14,20 @@ namespace MiniDerby.Data
     
     public partial class Horse
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Horse()
+        {
+            this.Donations = new HashSet<Donation>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> SponsorId { get; set; }
         public Nullable<int> EventId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Donation> Donations { get; set; }
+        public virtual Event Event { get; set; }
+        public virtual Sponsor Sponsor { get; set; }
     }
 }
