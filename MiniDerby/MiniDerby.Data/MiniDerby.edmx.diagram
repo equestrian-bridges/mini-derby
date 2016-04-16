@@ -12,6 +12,7 @@
         <AssociationConnector Association="MiniDerby.Data.FK__Donations__Horse__4F7CD00D" />
         <AssociationConnector Association="MiniDerby.Data.FK__Horses__EventId__412EB0B6" />
         <AssociationConnector Association="MiniDerby.Data.FK__Horses__SponsorI__46E78A0C" />
+        <EntityTypeShape EntityType="MiniDerby.Data.Error" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="MiniDerby.Data.FK_Sponsors_Events" />
       </Diagram>
     </edmx:Diagrams>

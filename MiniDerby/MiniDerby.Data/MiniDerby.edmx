@@ -16,6 +16,15 @@
           <Property Name="StripeChargeId" Type="varchar" MaxLength="255" />
           <Property Name="Amount" Type="money" />
         </EntityType>
+        <EntityType Name="Errors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ErrorDate" Type="datetime" />
+          <Property Name="ErrorMessage" Type="varchar(max)" />
+          <Property Name="StackTrace" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="Events">
           <Key>
             <PropertyRef Name="Id" />
@@ -91,6 +100,7 @@
         </Association>
         <EntityContainer Name="MiniDerbyDataStoreContainer">
           <EntitySet Name="Donations" EntityType="Self.Donations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Errors" EntityType="Self.Errors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Horses" EntityType="Self.Horses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sponsors" EntityType="Self.Sponsors" Schema="dbo" store:Type="Tables" />
@@ -132,6 +142,7 @@
             <End Role="Sponsor" EntitySet="Sponsors" />
             <End Role="Horse" EntitySet="Horses" />
           </AssociationSet>
+          <EntitySet Name="Errors" EntityType="MiniDerby.Data.Error" />
           <AssociationSet Name="FK_Sponsors_Events" Association="MiniDerby.Data.FK_Sponsors_Events">
             <End Role="Event" EntitySet="Events" />
             <End Role="Sponsor" EntitySet="Sponsors" />
@@ -217,6 +228,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ErrorDate" Type="DateTime" Precision="3" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
         <Association Name="FK_Sponsors_Events">
           <End Type="MiniDerby.Data.Event" Role="Event" Multiplicity="1" />
           <End Type="MiniDerby.Data.Sponsor" Role="Sponsor" Multiplicity="*" />
@@ -271,6 +291,16 @@
               <MappingFragment StoreEntitySet="Sponsors">
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Errors">
+            <EntityTypeMapping TypeName="MiniDerby.Data.Error">
+              <MappingFragment StoreEntitySet="Errors">
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

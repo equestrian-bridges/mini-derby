@@ -12,11 +12,13 @@ namespace MiniDerby.Tools
     {
 		public DonationLogic DonationLogic { get; set; }
 		public EventLogic EventLogic { get; set; }
+        public LoggingLogic LoggingLogic { get; set; }
 
 		public BaseController()
 		{
 			var context = new DefaultConnection();
 			this.DonationLogic = new DonationLogic(context);
+            this.LoggingLogic = new LoggingLogic(context);
 			this.EventLogic = new EventLogic(context);
 		}
     }
