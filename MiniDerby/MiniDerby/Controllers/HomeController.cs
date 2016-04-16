@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MiniDerby.Models.Home;
+using MiniDerby.Tools;
 
 namespace MiniDerby.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : BaseController
 	{
 		public ActionResult Index()
 		{
-			return View();
+			var model = new IndexViewModel(this.EventLogic.GetNextEvent(), this.EventLogic.GetPreviousEvent());
+			return View(model);
 		}
 
 		public ActionResult About()

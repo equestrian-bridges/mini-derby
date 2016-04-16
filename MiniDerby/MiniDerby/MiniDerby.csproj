@@ -128,14 +128,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IPNController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\PayPalListenerModel.cs" />
     <Compile Include="PayPal\PayPalCheckoutInfo.cs" />
+    <Compile Include="Models\Home\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\BaseController.cs" />
   </ItemGroup>
@@ -335,22 +334,10 @@
     <Content Include="Content\css\theme-colors\red.css" />
     <Content Include="Content\css\theme-colors\teal.css" />
     <Content Include="Content\css\theme-skins\dark.css" />
-    <Content Include="Content\Images\horse1_headshot.png" />
-    <Content Include="Content\Images\horse1_profile.png" />
-    <Content Include="Content\Images\horse2_headshot.png" />
-    <Content Include="Content\Images\horse2_profile.png" />
-    <Content Include="Content\Images\horse3_headshot.png" />
-    <Content Include="Content\Images\horse3_profile.png" />
-    <Content Include="Content\Images\horse4_headshot.png" />
-    <Content Include="Content\Images\horse4_profile.png" />
     <Content Include="Content\Images\logo_inverted_large.png" />
     <Content Include="Content\Images\logo_inverted_small.png" />
     <Content Include="Content\Images\logo_large.png" />
     <Content Include="Content\Images\logo_small.png" />
-    <Content Include="Content\Images\Sponsers\advantage_large.jpg" />
-    <Content Include="Content\Images\Sponsers\fairchild_construction.jpg" />
-    <Content Include="Content\Images\Sponsers\game_xchange_small.png" />
-    <Content Include="Content\Images\Sponsers\harps_large.jpeg" />
     <Content Include="Content\plugins\animate.css" />
     <Content Include="Content\plugins\animated-headline\css\animated-headline.css" />
     <Content Include="Content\plugins\animated-headline\css\reset.css" />
@@ -4181,12 +4168,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Donation\Index.cshtml" />
     <Content Include="Views\Home\Horses.cshtml" />
+    <Content Include="Views\Shared\_Horse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Base\" />
+    <Folder Include="Content\Images\Sponsors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
