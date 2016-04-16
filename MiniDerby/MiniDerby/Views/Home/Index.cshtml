@@ -10,14 +10,30 @@
 	{
 		<script type="text/javascript" src="~/Content/plugins/countdown/jquery.plugin.js"></script>
 		<script type="text/javascript" src="~/Content/plugins/countdown/jquery.countdown.min.js"></script>
-		<link rel="stylesheet" href="~/Content/plugins/countdown/jquery.countdown.css" />
 		<script>
-			$('#countdown').countdown({ until: new Date(@Model.NextEvent.EventDate.Value.ToString("yyyy,MM-1,dd")) });
+			$('#countdown').countdown(
+			{
+				until: new Date(@Model.NextEvent.EventDate.Value.ToString("yyyy,MM-1,dd")),
+				layout: '{d<} {dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}'
+			});
 		</script>
 	}
 
 	@section Countdown {
-		<div style="display: inline;" id="countdown" class="pull-right"></div>
+		<style>
+			#countdown-container {
+				display: inline-block; line-height: 1.8em; vertical-align: top;
+				color: white;
+			}
+			.header-fixed-shrink #countdown-container {
+				font-size: .7em;
+				/*line-height: .8*/
+			}
+		</style>
+		<div id="countdown-container">
+			<div id="countdown"></div>
+			<div>until the @Model.NextEvent.Name</div>
+		</div>
 	}
 }
 
