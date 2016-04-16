@@ -10,12 +10,14 @@ namespace MiniDerby.Tools
 {
     public class BaseController : Controller
     {
-		public DonationLogic DonationLogic { get; set; }
+        public DonationLogic DonationLogic { get; set; }
+        public LoggingLogic LoggingLogic { get; set; }
 
-		public BaseController()
+        public BaseController()
 		{
 			var context = new DefaultConnection();
-			this.DonationLogic = new DonationLogic(context);
-		}
+            this.DonationLogic = new DonationLogic(context);
+            this.LoggingLogic = new LoggingLogic(context);
+        }
     }
 }

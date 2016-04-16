@@ -10,40 +10,40 @@ namespace MiniDerby.PayPal
         //ipnguide.pdf - page 43
         #region "Transaction and Notification-Related Variables"
         /// use this to verify its not spoofed, this is our info
-        public string receiver_email { get; set; } //127
-        public string receiver_id { get; set; } //13
+        public String receiver_email { get; set; } //127
+        public String receiver_id { get; set; } //13
         /// Keep this ID to avoid processing the transaction twice
         /// The merchant’s original transaction identification number for the payment from the buyer, against which the case was registered.
-        public string txn_id { get; set; }
+        public String txn_id { get; set; }
         /// The kind of transaction for which the IPN message was sent.
-        public string txn_type { get; set; }
-        /// Encrypted string used to validate the authenticity of the transaction
-        public string verify_sign { get; set; }
+        public String txn_type { get; set; }
+        /// Encrypted String used to validate the authenticity of the transaction
+        public String verify_sign { get; set; }
 
         #endregion
 
         #region "Buyer Information Variables"
 
-        public string address_country { get; set; } //64
-        public string address_city { get; set; } //40
-        public string address_country_code { get; set; }  //2
-        public string address_name { get; set; } //128 - prob don't need
-        public string address_state { get; set; } //40
-        public string address_status { get; set; }  //confirmed/unconfirmed
-        public string address_street { get; set; } //200
-        public string address_zip { get; set; } //20
-        public string contact_phone { get; set; } //20
-        public string first_name { get; set; } //64
-        public string last_name { get; set; } //64
-        public string payer_email { get; set; } //127
-        public string payer_id { get; set; }  //13
+        public String address_country { get; set; } //64
+        public String address_city { get; set; } //40
+        public String address_country_code { get; set; }  //2
+        public String address_name { get; set; } //128 - prob don't need
+        public String address_state { get; set; } //40
+        public String address_status { get; set; }  //confirmed/unconfirmed
+        public String address_street { get; set; } //200
+        public String address_zip { get; set; } //20
+        public String contact_phone { get; set; } //20
+        public String first_name { get; set; } //64
+        public String last_name { get; set; } //64
+        public String payer_email { get; set; } //127
+        public String payer_id { get; set; }  //13
 
-        public int? Zip
+        public Int32? Zip
         {
             get
             {
-                int temp;
-                if (int.TryParse(address_zip, out temp))
+                Int32 temp;
+                if (Int32.TryParse(address_zip, out temp))
                 {
                     return temp;
                 }
@@ -58,32 +58,32 @@ namespace MiniDerby.PayPal
         #region "Payment Information Variables"
 
         /*
-        public string auth_amount { get; set; }
-        public string auth_exp { get; set; } //28
-        public string auth_id { get; set; } //19
-        public string auth_status { get; set; }
+        public String auth_amount { get; set; }
+        public String auth_exp { get; set; } //28
+        public String auth_id { get; set; } //19
+        public String auth_status { get; set; }
          */
 
         /// Token passed back from PayPal for cross ref
-        public string token { get; set; }
-        //public string checkoutstatus { get; set; }
+        public String token { get; set; }
+        //public String checkoutstatus { get; set; }
         /// Passthrough variable you can use to identify your Invoice Number for this purchase. If omitted, no variable is passed back.
-        public string invoice { get; set; } //127
+        public String invoice { get; set; } //127
         /// Item name as passed by you, the merchant. Or, if not passed by you, as
         /// entered by your customer. If this is a shopping cart transaction, PayPal
         /// will append the number of the item (e.g., item_name1, item_name2,
         /// and so forth).
-        public string item_name1 { get; set; } //127
-        public string item_number1 { get; set; } //127
-        public string mc_currency { get; set; } //currency of the payment.
-        public string mc_fee { get; set; } //Transaction fee associated with the payment
-        public string mc_gross { get; set; }    //Full amount of the customer's payment 
+        public String item_name1 { get; set; } //127
+        public String item_number1 { get; set; } //127
+        public String mc_currency { get; set; } //currency of the payment.
+        public String mc_fee { get; set; } //Transaction fee associated with the payment
+        public String mc_gross { get; set; }    //Full amount of the customer's payment 
         /// Whether the customer has a verified PayPal account.
         /// verified – Customer has a verified PayPal account
         /// unverified – Customer has an unverified PayPal account.
-        public string payer_status { get; set; }
+        public String payer_status { get; set; }
         /// HH:MM:SS Mmm DD, YYYY PDT (28chars)
-        public string payment_date { get; set; }
+        public String payment_date { get; set; }
 
         public DateTime TrxnDate
         {
@@ -116,29 +116,29 @@ namespace MiniDerby.PayPal
         ///returned to the buyer. The reason for the reversal is specified in the ReasonCode element.
         ///Processed: A payment has been accepted.
         ///Voided: This authorization has been voided.
-        public string payment_status { get; set; }
+        public String payment_status { get; set; }
         /// echeck: This payment was funded with an eCheck.
         /// instant: This payment was funded with PayPal balance, credit card, or Instant Transfer.
-        public string payment_type { get; set; }
+        public String payment_type { get; set; }
         /// This variable is set only if payment_status = Pending. - too many reasons (look it up in pdf)
-        public string pending_reason { get; set; }
-        public string protection_eligibility { get; set; }
-        public string quantity { get; set; }
-        public string reason_code { get; set; }
-        public string correlationID { get; set; }
-        public string ack { get; set; }
-        public string errmsg { get; set; }
-        public int? errcode { get; set; }
+        public String pending_reason { get; set; }
+        public String protection_eligibility { get; set; }
+        public String quantity { get; set; }
+        public String reason_code { get; set; }
+        public String correlationID { get; set; }
+        public String ack { get; set; }
+        public String errmsg { get; set; }
+        public Int32? errcode { get; set; }
 
         /// should hold the clientid passed in from setexpresscheckout
-        public string custom { get; set; }
+        public String custom { get; set; }
 
-        public decimal Total
+        public Decimal Total
         {
             get
             {
-                decimal amount = 0;
-                if (decimal.TryParse(mc_gross, out amount))
+                Decimal amount = 0;
+                if (Decimal.TryParse(mc_gross, out amount))
                 {
                     return amount;
                 }
@@ -148,12 +148,12 @@ namespace MiniDerby.PayPal
                 }
             }
         }
-        public decimal Fee
+        public Decimal Fee
         {
             get
             {
-                decimal amount = 0;
-                if (decimal.TryParse(mc_fee, out amount))
+                Decimal amount = 0;
+                if (Decimal.TryParse(mc_fee, out amount))
                 {
                     return amount;
                 }

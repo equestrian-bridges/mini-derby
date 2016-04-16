@@ -18,6 +18,7 @@ namespace MiniDerby.Data
         public Event()
         {
             this.Horses = new HashSet<Horse>();
+            this.Sponsors = new HashSet<Sponsor>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,7 @@ namespace MiniDerby.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Horse> Horses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sponsor> Sponsors { get; set; }
     }
 }

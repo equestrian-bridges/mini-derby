@@ -55,6 +55,9 @@
     <Compile Include="Donation.cs">
       <DependentUpon>MiniDerby.tt</DependentUpon>
     </Compile>
+    <Compile Include="Error.cs">
+      <DependentUpon>MiniDerby.tt</DependentUpon>
+    </Compile>
     <Compile Include="Event.cs">
       <DependentUpon>MiniDerby.tt</DependentUpon>
     </Compile>
@@ -88,7 +91,9 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="MiniDerby.edmx.diagram">
       <DependentUpon>MiniDerby.edmx</DependentUpon>
     </None>
