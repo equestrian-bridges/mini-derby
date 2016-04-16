@@ -4,12 +4,32 @@
     ViewBag.Title = "Donations";
 }
 
+<script type="text/javascript">
+    function itemNumberChange() {
+        var currentHorseId = $("#horseSelect").val();
+        var returnUrl = "http://localhost:59237/Donation/DonationReceived?HorseId=" + currentHorseId;
+
+    }
+</script>
+
 <h2>Donation Home</h2>
 
-<ul>
-	@foreach (var horse in Model)
-	{
-		<li>@horse.Name</li>
-	}
-</ul>
+<div class="paypal">
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <h3>Select the horse you will support:</h3>
+        <select name="item_number" id="horseSelect">
+            @foreach (var horse in Model)
+            {
+                <option value="@horse.Id">
+                    @horse.Name
+                </option>
 
+            }
+        </select>
+        <input type="hidden" name="return" id="paypalReturnUrl" value="http://localhost:59237/Donation/DonationReceived" />
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+        <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+</div>
