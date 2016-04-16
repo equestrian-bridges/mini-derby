@@ -367,6 +367,9 @@
     <Content Include="Content\plugins\bootstrap\css\bootstrap.css" />
     <Content Include="Content\plugins\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\plugins\bootstrap\js\npm.js" />
     <Content Include="Content\plugins\brand-buttons\brand-buttons-inversed.css" />
     <Content Include="Content\plugins\brand-buttons\brand-buttons.css" />
     <Content Include="Content\plugins\brand-buttons\css\brand-buttons-inversed.min.css" />
@@ -4180,7 +4183,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\plugins\bootstrap\js\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
