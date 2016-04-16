@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Donation.cs">
+      <DependentUpon>MiniDerby.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Event.cs">
+      <DependentUpon>MiniDerby.tt</DependentUpon>
+    </Compile>
     <Compile Include="Horse.cs">
       <DependentUpon>MiniDerby.tt</DependentUpon>
     </Compile>
@@ -71,6 +77,9 @@
       <DependentUpon>MiniDerby.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sponsor.cs">
+      <DependentUpon>MiniDerby.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="MiniDerby.edmx">
