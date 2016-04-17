@@ -339,6 +339,7 @@
     <Content Include="Content\Images\logo_inverted_small.png" />
     <Content Include="Content\Images\logo_large.png" />
     <Content Include="Content\Images\logo_small.png" />
+    <Content Include="Content\Images\mini-derby-background.png" />
     <Content Include="Content\plugins\animate.css" />
     <Content Include="Content\plugins\animated-headline\css\animated-headline.css" />
     <Content Include="Content\plugins\animated-headline\css\reset.css" />

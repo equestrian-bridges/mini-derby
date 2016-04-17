@@ -28,6 +28,9 @@
 	<link rel="stylesheet" href="~/Content/plugins/animate.css">
 	<link rel="stylesheet" href="~/Content/plugins/line-icons/line-icons.css">
 	<link rel="stylesheet" href="~/Content/plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/plugins/parallax-slider/css/parallax-slider.css">
+	<link rel="stylesheet" href="assets/plugins/fancybox/source/jquery.fancybox.css">
+	<link rel="stylesheet" href="assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
 	<!-- CSS Theme -->
 	<link rel="stylesheet" href="~/Content/css/theme-colors/dark-blue.css" id="style_color">
 	<!-- CSS Customization -->
@@ -55,7 +58,6 @@
 								<img class="default-logo" src="~/Content/Images/logo_inverted_large.png" alt="Logo">
 								<img class="shrink-logo" src="~/Content/Images/logo_small.png" alt="Logo">
 							</a>
-							@RenderSection("Countdown", required:false)
 						</div>
 						<!-- ENd Navbar Brand -->
 					</div>
@@ -76,7 +78,7 @@
 		</div>
 		<!-- End Header 6 -->
 
-
+		@RenderSection("Slider", required: false)
 
 		<!--=== Content ===-->
 		<div class="container content height-500">
