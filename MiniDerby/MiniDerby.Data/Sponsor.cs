@@ -23,6 +23,7 @@ namespace MiniDerby.Data
         public int Id { get; set; }
         public string Name { get; set; }
         public int EventId { get; set; }
+        public bool HasImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Horse> Horses { get; set; }

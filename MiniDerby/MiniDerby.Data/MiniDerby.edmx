@@ -52,6 +52,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="HasImage" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK__Donations__Horse__4F7CD00D">
           <End Role="Horses" Type="Self.Horses" Multiplicity="0..1" />
@@ -219,6 +220,7 @@
           <NavigationProperty Name="Horses" Relationship="MiniDerby.Data.FK__Horses__SponsorI__46E78A0C" FromRole="Sponsor" ToRole="Horse" />
           <Property Name="EventId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Event" Relationship="MiniDerby.Data.FK_Sponsors_Events" FromRole="Sponsor" ToRole="Event" />
+          <Property Name="HasImage" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK__Donations__Horse__4F7CD00D">
           <End Type="MiniDerby.Data.Horse" Role="Horse" Multiplicity="0..1" />
@@ -332,6 +334,7 @@
           <EntitySetMapping Name="Sponsors">
             <EntityTypeMapping TypeName="MiniDerby.Data.Sponsor">
               <MappingFragment StoreEntitySet="Sponsors">
+                <ScalarProperty Name="HasImage" ColumnName="HasImage" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
