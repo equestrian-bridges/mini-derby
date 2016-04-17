@@ -64,8 +64,9 @@ namespace MiniDerby.Controllers
                 msg.Dispose();
                 return View("Success");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LoggingLogic.LogException(ex, "Home Controller");
                 return View("Error");
             }
         }
