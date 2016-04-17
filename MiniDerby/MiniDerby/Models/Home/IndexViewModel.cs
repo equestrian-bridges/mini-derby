@@ -14,6 +14,25 @@ namespace MiniDerby.Models.Home
 			this.PreviousEvent = previousEvent;
 		}
 
+		public bool IsFutureEventPage
+		{
+			get {
+				return NextEvent != null;
+			}
+		}
+
+		public Event MostImportantEvent
+		{
+			get {
+				var theEvent = IsFutureEventPage ? NextEvent : PreviousEvent;
+				if (theEvent == null)
+				{
+					throw new Exception("No Events to display!");
+				}
+				return theEvent;
+			}
+		}
+
 		public Event PreviousEvent { get; set; }
 		public Event NextEvent { get; set; }
 	}
