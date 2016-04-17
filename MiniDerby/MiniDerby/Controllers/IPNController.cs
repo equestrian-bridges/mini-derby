@@ -21,16 +21,23 @@ namespace MiniDerby.Controllers
         {
             byte[] parameters = Request.BinaryRead(Request.ContentLength);
 
-            if (parameters != null)
+            try
             {
-                // Set the first parameter to false when putting in production
-                if (GetVerificationCode(true, parameters) == "VERIFIED")
+                if (parameters != null)
                 {
-                    var horseId = Int32.Parse(payPalCheckoutInfo.custom);
-                    this.DonationLogic.SaveDonation(payPalCheckoutInfo.txn_id, payPalCheckoutInfo.first_name, payPalCheckoutInfo.last_name, payPalCheckoutInfo.payer_email, payPalCheckoutInfo.Total, horseId);
+                    // Set the first parameter to false when putting in production
+                    if (GetVerificationCode(true, parameters) == "VERIFIED")
+                    {
+                        var horseId = Int32.Parse(payPalCheckoutInfo.custom);
+                        this.DonationLogic.SaveDonation(payPalCheckoutInfo.txn_id, payPalCheckoutInfo.first_name, payPalCheckoutInfo.last_name, payPalCheckoutInfo.payer_email, payPalCheckoutInfo.Total, horseId);
 
-                    return new EmptyResult();
+                        return new EmptyResult();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                LoggingLogic.LogException(ex);
             }
 
             LoggingLogic.LogError("A bad request came from PayPal", Encoding.ASCII.GetString(parameters));

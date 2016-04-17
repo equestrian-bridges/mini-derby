@@ -34,6 +34,7 @@ namespace MiniDerby.Logic
                     HorseId = horseId,
                     Name = String.Format("{0} {1}", firstName, lastName),
                     PaypalTransactionId = transactionId,
+                    TransactionDate = DateTime.Now
                 };
 
                 Context.Donations.Add(newDonation);
