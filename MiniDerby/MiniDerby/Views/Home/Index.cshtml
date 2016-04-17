@@ -13,7 +13,7 @@
 		<script>
 			$('#countdown').countdown(
 			{
-				until: new Date(@Model.NextEvent.EventDate.Value.ToString("yyyy,MM-1,dd")),
+				until: new Date(@Model.NextEvent.EventStartDate.Value.ToString("yyyy,MM-1,dd")),
 				layout: '{d<} {dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}'
 			});
 		</script>
@@ -47,7 +47,7 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        <h2>Next Event: @Model.NextEvent.EventDate.Value.ToShortDateString()</h2>
+        <h2>Next Event: @Model.NextEvent.EventStartDate.Value.ToShortDateString()</h2>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-8">

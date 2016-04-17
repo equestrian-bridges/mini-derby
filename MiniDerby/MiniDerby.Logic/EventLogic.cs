@@ -16,15 +16,15 @@ namespace MiniDerby.Logic
 		public Event GetNextEvent()
 		{
 			return GetEventsBaseQuery()
-						.OrderBy(x => x.EventDate)
-						.SingleOrDefault(x => x.EventDate > DateTime.Today);
+						.OrderBy(x => x.EventStartDate)
+						.SingleOrDefault(x => x.EventStartDate > DateTime.Today);
 		}
 
 		public Event GetPreviousEvent()
 		{
 			return GetEventsBaseQuery()
-						.OrderByDescending(x => x.EventDate)
-						.SingleOrDefault(x => x.EventDate < DateTime.Today);
+						.OrderByDescending(x => x.EventStartDate)
+						.SingleOrDefault(x => x.EventStartDate < DateTime.Today);
 		}
 
 		private IQueryable<Event> GetEventsBaseQuery()

@@ -11,7 +11,7 @@
 				<small>@Model.Donations.Sum(x => x.Amount).Value.ToString("C")</small>
 			</h2>
 
-			@if (Model.Event.EventDate.Value > DateTime.Today)
+			@if (Model.Event.EventStartDate.Value > DateTime.Today)
 			{
 				<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 					<input type="hidden" name="custom" id="horseSelect" value="@Model.Id">

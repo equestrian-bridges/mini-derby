@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ac78c8299f544ce48dc72ff631cf4978" Name="Diagram1" >
+      <Diagram DiagramId="ac78c8299f544ce48dc72ff631cf4978" Name="Diagram1" ZoomLevel="114" >
         <EntityTypeShape EntityType="MiniDerby.Data.Horse" Width="1.5" PointX="6.625" PointY="3.25" />
         <EntityTypeShape EntityType="MiniDerby.Data.Donation" Width="1.5" PointX="9.25" PointY="3.25" />
         <EntityTypeShape EntityType="MiniDerby.Data.Event" Width="1.5" PointX="6.625" PointY="6.125" />
@@ -14,6 +14,7 @@
         <AssociationConnector Association="MiniDerby.Data.FK__Horses__SponsorI__46E78A0C" />
         <EntityTypeShape EntityType="MiniDerby.Data.Error" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="MiniDerby.Data.FK_Sponsors_Events" />
+        <AssociationConnector Association="MiniDerby.Data.FK_Donations_Events" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

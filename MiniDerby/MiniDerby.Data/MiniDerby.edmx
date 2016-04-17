@@ -13,8 +13,10 @@
           <Property Name="HorseId" Type="int" />
           <Property Name="Email" Type="varchar" MaxLength="255" />
           <Property Name="Name" Type="varchar" MaxLength="255" />
-          <Property Name="StripeChargeId" Type="varchar" MaxLength="255" />
+          <Property Name="PaypalTransactionId" Type="varchar" MaxLength="255" />
           <Property Name="Amount" Type="money" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="EventId" Type="int" />
         </EntityType>
         <EntityType Name="Errors">
           <Key>
@@ -31,7 +33,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="EventDate" Type="datetime" />
+          <Property Name="EventStartDate" Type="datetime" />
+          <Property Name="EventEndDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Horses">
           <Key>
@@ -86,6 +89,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Donations_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Donations" Type="Self.Donations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donations">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sponsors_Events">
           <End Role="Events" Type="Self.Events" Multiplicity="1" />
           <End Role="Sponsors" Type="Self.Sponsors" Multiplicity="*" />
@@ -115,6 +130,10 @@
           <AssociationSet Name="FK__Horses__SponsorI__46E78A0C" Association="Self.FK__Horses__SponsorI__46E78A0C">
             <End Role="Sponsors" EntitySet="Sponsors" />
             <End Role="Horses" EntitySet="Horses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Donations_Events" Association="Self.FK_Donations_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Donations" EntitySet="Donations" />
           </AssociationSet>
           <AssociationSet Name="FK_Sponsors_Events" Association="Self.FK_Sponsors_Events">
             <End Role="Events" EntitySet="Events" />
@@ -147,6 +166,10 @@
             <End Role="Event" EntitySet="Events" />
             <End Role="Sponsor" EntitySet="Sponsors" />
           </AssociationSet>
+          <AssociationSet Name="FK_Donations_Events" Association="MiniDerby.Data.FK_Donations_Events">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Donation" EntitySet="Donations" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Horse">
           <Key>
@@ -168,9 +191,12 @@
           <Property Name="HorseId" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="StripeChargeId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Horse" Relationship="MiniDerby.Data.FK__Donations__Horse__4F7CD00D" FromRole="Donation" ToRole="Horse" />
+          <Property Name="PaypalTransactionId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventId" Type="Int32" />
+          <NavigationProperty Name="Event" Relationship="MiniDerby.Data.FK_Donations_Events" FromRole="Donation" ToRole="Event" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -178,9 +204,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EventDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Horses" Relationship="MiniDerby.Data.FK__Horses__EventId__412EB0B6" FromRole="Event" ToRole="Horse" />
           <NavigationProperty Name="Sponsors" Relationship="MiniDerby.Data.FK_Sponsors_Events" FromRole="Event" ToRole="Sponsor" />
+          <Property Name="EventStartDate" Type="DateTime" Precision="3" />
+          <Property Name="EventEndDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Donations" Relationship="MiniDerby.Data.FK_Donations_Events" FromRole="Event" ToRole="Donation" />
         </EntityType>
         <EntityType Name="Sponsor">
           <Key>
@@ -249,6 +277,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Donations_Events">
+          <End Type="MiniDerby.Data.Event" Role="Event" Multiplicity="0..1" />
+          <End Type="MiniDerby.Data.Donation" Role="Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -268,8 +308,10 @@
           <EntitySetMapping Name="Donations">
             <EntityTypeMapping TypeName="MiniDerby.Data.Donation">
               <MappingFragment StoreEntitySet="Donations">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="PaypalTransactionId" ColumnName="PaypalTransactionId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="StripeChargeId" ColumnName="StripeChargeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="HorseId" ColumnName="HorseId" />
@@ -280,7 +322,8 @@
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="MiniDerby.Data.Event">
               <MappingFragment StoreEntitySet="Events">
-                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="EventEndDate" ColumnName="EventEndDate" />
+                <ScalarProperty Name="EventStartDate" ColumnName="EventStartDate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
