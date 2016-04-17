@@ -36,6 +36,12 @@ namespace MiniDerby.Controllers
 			var horses = this.EventLogic.GetHorses();
 			return View(horses);
 		}
+       
+        public ActionResult SponsorInformation()
+        {
+            ViewBag.Message = "Becoming a sponsor!";
+            return View();
+        }
 
 		public ActionResult Horse(Int32 id)
 		{

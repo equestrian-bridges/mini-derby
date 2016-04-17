@@ -4175,6 +4175,7 @@
     <Content Include="Views\Shared\_Horse.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Home\SponsorInformation.cshtml" />
     <Content Include="Views\Home\Horse.cshtml" />
   </ItemGroup>
   <ItemGroup>
