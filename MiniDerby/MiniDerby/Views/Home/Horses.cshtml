@@ -1,10 +1,15 @@
-﻿
+﻿@model MiniDerby.Models.Home.IndexViewModel
 @{
     ViewBag.Title = "Horses";
 }
 
 <h2>Horses</h2>
 
-<ul>
-	<li>Lil' Sebastian</li>
-</ul>
+<div class="row">
+    <div class="col-md-8">
+        @foreach (var horse in Model.NextEvent.Horses)
+        {
+            @Html.Partial("_Horse", horse)
+        }
+    </div>
+</div>

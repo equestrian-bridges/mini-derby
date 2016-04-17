@@ -81,10 +81,12 @@
 }
 
 <div class="row">
+    @{ var i = 1; }
 	@foreach (var horse in Model.NextEvent.Horses.OrderByDescending(x => x.TotalAmountRaised))
 	{
 		<div class="col-sm-6">
-			@Html.Partial("_Horse", horse)
+			@Html.Partial("_Horse", horse, new ViewDataDictionary { { "Index" , i } } ) 
 		</div>
-	}
+        i++;
+    }
 </div>
