@@ -335,6 +335,7 @@
     <Content Include="Content\css\theme-colors\red.css" />
     <Content Include="Content\css\theme-colors\teal.css" />
     <Content Include="Content\css\theme-skins\dark.css" />
+    <Content Include="Content\Images\food-truck.jpg" />
     <Content Include="Content\Images\logo_inverted_large.png" />
     <Content Include="Content\Images\logo_inverted_small.png" />
     <Content Include="Content\Images\logo_large.png" />
@@ -4175,6 +4176,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Home\SponsorInformation.cshtml" />
+    <Content Include="Views\Home\Horse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

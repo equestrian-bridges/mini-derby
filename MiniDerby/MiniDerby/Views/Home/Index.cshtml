@@ -48,7 +48,10 @@
 				<small class="text-uppercase" style="color:white;">Equestrian Bridges</small><br/>
 				@Model.MostImportantEvent.Name
 			</h1>
-			<p class="lead">A benefit for children with autism and their families.</p>
+			<p class="lead">
+				Join us for NWA's best Kentucky Derby watch party!<br/>
+				A benefit for children with autism and their families.
+			</p>
 			@if (Model.IsFutureEventPage)
 			{
 				<div class="rounded-2x" id="countdown-container">
@@ -60,12 +63,12 @@
 				@Html.Raw(String.Format("{0: MM/dd/yy}<br/>{0:h:mm tt} - {1: h:mm tt}", Model.MostImportantEvent.EventStartDate.Value, Model.MostImportantEvent.EventEndDate.Value))
 			</h2>
 			<h2>
-				<a style="color:white; text-decoration: underline" href="http://maps.apple.com/?saddr=Current%20Location&daddr=@Uri.EscapeDataString("3100 Oakland Zion Rd. Fayetteville, AR 72701")">3100 Oakland Zion Rd. Fayetteville, AR 72701</a>
+				<a style="color:white; text-decoration: underline" href="http://maps.apple.com/?saddr=Current%20Location&daddr=@Uri.EscapeDataString("3100 Oakland Zion Rd. Fayetteville, AR 72701")">Parkerman Stables <br/> 3100 Oakland Zion Rd. Fayetteville, AR 72701</a>
 			</h2>
 			@if (Model.IsFutureEventPage)
 			{
 				<div id="cta-container">
-					<a href="#" class="btn-u btn-u-blue btn-u-lg rounded-2x">
+					<a href="https://stubs.net/Event/1405/equestrian-bridges-4th-annual-mini-derby" class="btn-u btn-u-blue btn-u-lg rounded-2x">
 						<i class="fa fa-ticket"></i>
 						Buy a Ticket
 					</a>
@@ -80,13 +83,57 @@
 	<!-- End Interactive Slider v2 -->
 }
 
-<div class="row">
+<div class="headline">
+	<h2>Our Mini Horse Leaderboard</h2>
+</div>
+
+<div class="row margin-bottom-50">
+	<div class="col-xs-12 text-center">
+		<h1>@Model.MostImportantEvent.Horses.Sum(x => x.TotalAmountRaised).ToString("C") Raised!</h1>
+	</div>
     @{ var i = 1; }
-	@foreach (var horse in Model.NextEvent.Horses.OrderByDescending(x => x.TotalAmountRaised))
+	@foreach (var horse in Model.MostImportantEvent.Horses.OrderByDescending(x => x.TotalAmountRaised))
 	{
 		<div class="col-sm-6">
 			@Html.Partial("_Horse", horse, new ViewDataDictionary { { "Index" , i } } ) 
 		</div>
-        i++;
+		if (i % 2 == 0)
+		{
+			<div class="clearfix"></div>
+		}
+		i++;
     }
 </div>
+
+
+
+<div class="row margin-bottom-50">
+	<div class="col-xs-12 col-sm-6">
+		<div class="headline">
+			<h2>Food &amp; Drink</h2>
+		</div>
+		<img src="~/Content/Images/food-truck.jpg" class="img-responsive img-rounded" />
+		<h3>
+			Food by <a href="http://www.trickdilly.com">Trick Dilly</a><br />
+			Brews by <a href="https://www.facebook.com/theamendmentondickson/">Amendment</a>
+		</h3>
+	</div>
+	<div class="col-xs-12 col-sm-6">
+		<div class="headline">
+			<h2>Live Music By BACKROAD ANTHEM</h2>
+		</div>
+		<a href="http://backroadanthem.com">
+			<img src="http://backroadanthem.com/wp-content/uploads/2015/09/Backroad-Torn.jpg" alt="" class="img-responsive">
+		</a>
+	</div>
+</div>
+
+<div class="headline"><h2>Our Sponsors</h2></div>
+<ul>
+	@foreach (var sponsor in Model.MostImportantEvent.Sponsors.Where(x => x.HasImage))
+	{
+		<li style="display:inline-block; margin-right:30px;">
+			<img src="@String.Format("https://miniderby.blob.core.windows.net/sponsor/{0}.png", @sponsor.Id)" alt="">
+		</li>
+	}
+</ul>

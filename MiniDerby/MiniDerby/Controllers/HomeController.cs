@@ -30,6 +30,12 @@ namespace MiniDerby.Controllers
 
 			return View();
 		}
+
+        public ActionResult Horses()
+		{
+			var horses = this.EventLogic.GetHorses();
+			return View(horses);
+		}
        
         public ActionResult SponsorInformation()
         {
@@ -37,9 +43,10 @@ namespace MiniDerby.Controllers
             return View();
         }
 
-        public ActionResult Horses()
+		public ActionResult Horse(Int32 id)
 		{
-			return View();
+			var horse = this.EventLogic.GetHorse(id);
+			return View(horse);
 		}
 	}
 }

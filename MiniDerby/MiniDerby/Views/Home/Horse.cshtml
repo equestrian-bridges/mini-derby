@@ -1,0 +1,34 @@
+﻿@model MiniDerby.Data.Horse
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+@Html.Partial("_Horse", Model)
+
+<div class="headline"><h2>Donations</h2></div>
+
+<table class="table table-bordered table-striped">
+	<thead>
+		<th>
+			Name
+		</th>
+		<th>
+			Amount
+		</th>
+	</thead>
+	<tbody>
+	@foreach (var donation in Model.Donations)
+	{
+		<tr>
+			<td>
+				@donation.Name
+			</td>
+			<td>
+				@donation.Amount.Value.ToString("C")
+			</td>
+		</tr>
+	}
+	</tbody>
+</table>
+
