@@ -134,7 +134,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Contact\ContactModel.cs" />
     <Compile Include="PayPal\PayPalCheckoutInfo.cs" />
     <Compile Include="Models\Home\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -340,6 +339,7 @@
     <Content Include="Content\Images\logo_inverted_small.png" />
     <Content Include="Content\Images\logo_large.png" />
     <Content Include="Content\Images\logo_small.png" />
+    <Content Include="Content\Images\mini-derby-background.png" />
     <Content Include="Content\plugins\animate.css" />
     <Content Include="Content\plugins\animated-headline\css\animated-headline.css" />
     <Content Include="Content\plugins\animated-headline\css\reset.css" />
