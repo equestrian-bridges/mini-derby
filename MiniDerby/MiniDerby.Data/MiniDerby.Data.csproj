@@ -55,6 +55,7 @@
     <Compile Include="Donation.cs">
       <DependentUpon>MiniDerby.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Horse.cs" />
     <Compile Include="Error.cs">
       <DependentUpon>MiniDerby.tt</DependentUpon>
     </Compile>

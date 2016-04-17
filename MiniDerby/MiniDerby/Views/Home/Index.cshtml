@@ -19,15 +19,22 @@
 		</script>
 		<style>
 			#countdown-container {
-				display: inline-block;
-				line-height: 1.8em;
-				vertical-align: top;
+				font-size: 2em;
+				max-width: 550px;
+				margin: auto;
+				padding: 15px;
+				border: 4px solid white;
 				color: white;
 			}
-
-			.header-fixed-shrink #countdown-container {
-				font-size: .7em;
-				/*line-height: .8*/
+			#countdown-container * {
+				vertical-align: bottom;
+			}
+			#countdown {
+				display:inline-block;
+				color: white;
+			}
+			#cta-container * {
+				margin: 10px;
 			}
 		</style>
 	}
@@ -37,279 +44,47 @@
 	<!-- Interactive Slider v2 -->
 	<div class="interactive-slider-v2 img-v4" style="background: url(../../Content/Images/mini-derby-background.png) no-repeat; background-size: cover; background-position: center; margin-top: -94px;">
 		<div class="container">
-			<h1>Welcome to Unify</h1>
-			<p>Clean and fully responsive Template.</p>
+			<h1>
+				<small class="text-uppercase" style="color:white;">Equestrian Bridges</small><br/>
+				@Model.MostImportantEvent.Name
+			</h1>
+			<p class="lead">A benefit for children with autism and their families.</p>
+			@if (Model.IsFutureEventPage)
+			{
+				<div class="rounded-2x" id="countdown-container">
+					<i class="icon-2x icon icon-hourglass"></i>
+					<h2 id="countdown"></h2>
+				</div>
+			}
+			<h2 style="color:white;">
+				@Html.Raw(String.Format("{0: MM/dd/yy}<br/>{0:h:mm tt} - {1: h:mm tt}", Model.MostImportantEvent.EventStartDate.Value, Model.MostImportantEvent.EventEndDate.Value))
+			</h2>
+			<h2>
+				<a style="color:white; text-decoration: underline" href="http://maps.apple.com/?saddr=Current%20Location&daddr=@Uri.EscapeDataString("3100 Oakland Zion Rd. Fayetteville, AR 72701")">3100 Oakland Zion Rd. Fayetteville, AR 72701</a>
+			</h2>
+			@if (Model.IsFutureEventPage)
+			{
+				<div id="cta-container">
+					<a href="#" class="btn-u btn-u-blue btn-u-lg rounded-2x">
+						<i class="fa fa-ticket"></i>
+						Buy a Ticket
+					</a>
+					<a href="@Url.Action("Horses", "Home")" class="btn-u btn-u-light-green btn-u-lg rounded-2x">
+						<i class="icon icon-badge"></i>
+						Place a Donation Bet
+					</a>
+				</div>
+			}
 		</div>
 	</div>
 	<!-- End Interactive Slider v2 -->
 }
-	<div class="container">
-		<!-- Service Box -->
-		<div class="row text-center margin-bottom-60">
-			<div class="col-md-4 md-margin-bottom-50">
-				<img class="image-md margin-bottom-20" src="assets/img/icons/flat/01.png" alt="">
-				<h1 class="title-v3-md margin-bottom-10">Fully Responsive</h1>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cur modo, tortor mauris con</p>
-			</div>
-			<div class="col-md-4 flat-service md-margin-bottom-50">
-				<img class="image-md margin-bottom-20" src="assets/img/icons/flat/02.png" alt="">
-				<h2 class="title-v3-md margin-bottom-10">HTML5 + CSS3</h2>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cur modo, tortor mauris con</p>
-			</div>
-			<div class="col-md-4 flat-service">
-				<img class="image-md margin-bottom-20" src="assets/img/icons/flat/03.png" alt="">
-				<h2 class="title-v3-md margin-bottom-10">Launch Ready</h2>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cur modo, tortor mauris con</p>
-			</div>
-		</div>
-		<!-- End Service Box -->
-	</div><!--/container -->
-	<div class="bg-color-light">
-		<div class="container content-sm">
-			<div class="row">
-				<div class="col-md-6 md-margin-bottom-50">
-					<img class="img-responsive" src="assets/img/mockup/imac2.png" alt="">
-				</div>
-				<div class="col-md-6">
-					<br><br><br>
-					<div class="headline-left margin-bottom-30">
-						<h2 class="headline-brd">WE ARE UNIFY AGENCY</h2>
-						<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
-					</div>
-					<ul class="list-unstyled lists-v2 margin-bottom-30">
-						<li><i class="fa fa-check"></i> Suspendisse eget augue non dolor ultrices</li>
-						<li><i class="fa fa-check"></i> Donec eget aliquet tortor, quis lacinia dolor</li>
-						<li><i class="fa fa-check"></i> Curabitur ut augue at mi eleifend lobortis</li>
-						<li><i class="fa fa-check"></i> Eleifend eget aliquet tortor, quis lacinia dolor</li>
-					</ul>
-					<a href="#" class="btn-u btn-brd btn-brd-hover btn-u-dark">Learn More</a>
-				</div><!--/end row-->
-			</div>
-		</div>
-	</div>
-	<div class="container content-sm">
-		<div class="headline-center margin-bottom-60">
-			<h2>Recent Works</h2>
-			<p>Integer odio ligula, tincidunt id volutpat et, imperdiet eget mi. Quisque laoreet porttitor turpis sed <a href="#">fermentum</a>. Nullam sodales blandit nisi, tristique tempor nunc hendrerit at. Sed posuere mollis orci</p>
-		</div><!--/end Headline Center-->
-		<!-- Portfolio Box -->
-		<ul class="list-unstyled row portfolio-box">
-			<li class="col-sm-4 md-margin-bottom-50">
-				<a class="thumbnail fancybox" data-rel="gallery" title="Project One" href="assets/img/main/img9.jpg">
-					<img class="full-width img-responsive" src="assets/img/main/img9.jpg" alt="">
-					<span class="portfolio-box-in rounded-x">
-						<i class="icon-magnifier-add"></i>
-					</span>
-				</a>
-				<div class="headline-left margin-bottom-10"><h3 class="headline-brd">Project One</h3></div>
-				<small class="project-tag"><i class="fa fa-tag"></i><a href="#">Technology</a>, <a href="#">Business</a></small>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet </p>
-			</li>
-			<li class="col-sm-4 md-margin-bottom-50">
-				<a class="thumbnail fancybox" data-rel="gallery" title="Project Two" href="assets/img/main/img22.jpg">
-					<img class="full-width img-responsive" src="assets/img/main/img22.jpg" alt="">
-					<span class="portfolio-box-in rounded-x">
-						<i class="icon-magnifier-add"></i>
-					</span>
-				</a>
-				<div class="headline-left margin-bottom-10"><h3 class="headline-brd">Project Two</h3></div>
-				<small class="project-tag"><i class="fa fa-tag"></i><a href="#">Technology</a>, <a href="#">Business</a></small>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet </p>
-			</li>
-			<li class="col-sm-4">
-				<a class="thumbnail fancybox" data-rel="gallery" title="Project Three" href="assets/img/main/img18.jpg">
-					<img class="full-width img-responsive" src="assets/img/main/img18.jpg" alt="">
-					<span class="portfolio-box-in rounded-x">
-						<i class="icon-magnifier-add"></i>
-					</span>
-				</a>
-				<div class="headline-left margin-bottom-10"><h3 class="headline-brd">Project Three</h3></div>
-				<small class="project-tag"><i class="fa fa-tag"></i><a href="#">Technology</a>, <a href="#">Business</a></small>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet </p>
-			</li>
-		</ul>
-		<!-- End Portfolio Box -->
-	</div><!--/end container-->
-	<!-- Flat Background Block -->
-	<div class="flat-bg-block-v1 parallaxBg1 margin-bottom-60">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-7 md-margin-bottom-60">
-					<div class="headline-left margin-bottom-20">
-						<h2 class="headline-brd">Unify is Fully Responsive</h2>
-						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas moles</p>
-					</div><!--/end Headline Left-->
-					<div class="row">
-						<div class="col-sm-5">
-							<ul class="list-unstyled checked-list">
-								<li><i class="fa fa-check"></i> Donec id elit non mi porta gravida</li>
-								<li><i class="fa fa-check"></i> Corporate and Creative</li>
-								<li><i class="fa fa-check"></i> Responsive Bootstrap Template</li>
-								<li><i class="fa fa-check"></i> Corporate and Creative</li>
-							</ul>
-						</div>
-						<div class="col-sm-5 col-sm-offset-1">
-							<ul class="list-unstyled checked-list">
-								<li><i class="fa fa-check"></i> Donec id elit non mi porta gravida</li>
-								<li><i class="fa fa-check"></i> Corporate and Creative</li>
-								<li><i class="fa fa-check"></i> Responsive Bootstrap Template</li>
-								<li><i class="fa fa-check"></i> Corporate and Creative</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-5">
-					<img class="img-over img-responsive" src="assets/img/mockup/2.png" alt="">
-				</div>
-			</div>
-		</div><!--/end container-->
-	</div>
-	<!-- End Flat Background Block -->
-	<div class="container">
-		<div class="headline-left margin-bottom-40">
-			<h2 class="headline-brd">Latest Shots</h2>
-		</div><!--/end Headline Left-->
-		<div class="row margin-bottom-60">
-			<div class="col-sm-6">
-				<!-- Owl Carousel v5 -->
-				<div class="owl-carousel-v5">
-					<div class="owl-slider-v5">
-						<div class="item">
-							<img class="full-width img-responsive" src="assets/img/main/img12.jpg" alt="">
-						</div>
-						<div class="item">
-							<img class="full-width img-responsive" src="assets/img/main/img16.jpg" alt="">
-						</div>
-						<div class="item">
-							<img class="full-width img-responsive" src="assets/img/main/img22.jpg" alt="">
-						</div>
-					</div>
-				</div>
-				<!-- End Owl Carousel v5 -->
-			</div>
-			<div class="col-sm-6">
-				<h3>Justo cras odio apibus ac afilisi</h3><br>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta ipsum vel mi gravida mattis. Ut sit amet laoreet diam. Fusce iaculis sollicitudin purus, in tristique urna. Suspendisse potenti. Fusce non sem efficitur leo fermentum porttitor ut vitae orci. Aliquam erat volutpat.</p><br>
-				<p>Sed consectetur blandit ornare. Etiam at ante est. Nunc sed luctus ipsum, eu tincidunt justo. Sed id venenatis tellus. Mauris a cursus dolor. Maecenas sed magna non est interdum sollicitudin eget vitae ex. Ut eget lacus lorem.</p><br>
-				<button type="button" class="btn-u text-uppercase">View More</button>
-			</div>
-		</div><!--/end row-->
-	</div><!--/end container-->
-	<!-- Flat Testimonials -->
-	<div class="flat-testimonials bg-image-v1 parallaxBg margin-bottom-60">
-		<div class="container">
-			<div class="headline-center headline-light margin-bottom-60">
-				<h2>What People Are Saying</h2>
-				<p>Integer odio ligula, tincidunt id volutpat et, imperdiet eget mi. Quisque laoreet porttitor turpis sed <a href="#">fermentum</a>. Nullam sodales blandit nisi, tristique tempor nunc hendrerit at. Sed posuere mollis orci</p>
-			</div><!--/end Headline Center-->
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="flat-testimonials-in md-margin-bottom-50">
-						<img class="rounded-x img-responsive" src="assets/img/team/img1-sm.jpg" alt="">
-						<h3>Anthony Connor</h3>
-						<span class="color-green">Software Developer</span>
-						<p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis, magna id sem ipsum mi interduml</p>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="flat-testimonials-in md-margin-bottom-50">
-						<img class="rounded-x img-responsive" src="assets/img/team/img2-sm.jpg" alt="">
-						<h3>Angela Danil</h3>
-						<span class="color-green">Web Designer</span>
-						<p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis, magna id sem ipsum mi interduml</p>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="flat-testimonials-in">
-						<img class="rounded-x img-responsive" src="assets/img/team/img3-sm.jpg" alt="">
-						<h3>Anthony Connor</h3>
-						<span class="color-green">Software Developer</span>
-						<p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis, magna id sem ipsum mi interduml</p>
-					</div>
-				</div>
-			</div><!--/end row-->
-		</div><!--/end container-->
-	</div>
-	<!-- End Flat Testimonials -->
-	<div class="container">
-		<div class="headline-center margin-bottom-60">
-			<h2>What We Provide</h2>
-			<p>Integer odio ligula, tincidunt id volutpat et, imperdiet eget mi. Quisque laoreet porttitor turpis sed <a href="#">fermentum</a>. Nullam sodales blandit nisi, tristique tempor nunc hendrerit at. Sed posuere mollis orci</p>
-		</div><!--/end Headline Center-->
-		<div class="row margin-bottom-40">
-			<div class="col-md-4">
-				<div class="content-boxes-v5 margin-bottom-30">
-					<i class="rounded-x icon-layers"></i>
-					<div class="overflow-h">
-						<h3 class="no-top-space">Responsive Layout</h3>
-						<p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-					</div>
-				</div>
-				<div class="content-boxes-v5 md-margin-bottom-30">
-					<i class="rounded-x icon-settings"></i>
-					<div class="overflow-h">
-						<h3 class="no-top-space">Color Options</h3>
-						<p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="content-boxes-v5 margin-bottom-30">
-					<i class="rounded-x icon-earphones-alt "></i>
-					<div class="overflow-h">
-						<h3 class="no-top-space">Outstanding Support</h3>
-						<p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-					</div>
-				</div>
-				<div class="content-boxes-v5 md-margin-bottom-30">
-					<i class="rounded-x icon-user "></i>
-					<div class="overflow-h">
-						<h3 class="no-top-space">User Friendly</h3>
-						<p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="content-boxes-v5 margin-bottom-30">
-					<i class="rounded-x icon-wrench"></i>
-					<div class="overflow-h">
-						<h3 class="no-top-space">Customizable Design</h3>
-						<p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-					</div>
-				</div>
-				<div class="content-boxes-v5 md-margin-bottom-30">
-					<i class="rounded-x icon-star"></i>
-					<div class="overflow-h">
-						<h3 class="no-top-space">Free Updates</h3>
-						<p>Proin et augue vel nisi rhoncus tincidunt. Cras venenatis</p>
-					</div>
-				</div>
-			</div>
-		</div><!--/end row-->
-	</div><!--/end container-->
 
-
-
-
-
-
-<div class="jumbotron">
-    <h1>Lil' Sebastian</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 <div class="row">
-    <h1>LIL SEBASTIAN!</h1>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Next Event: @Model.NextEvent.EventStartDate.Value.ToShortDateString()</h2>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-8">
-		@foreach (var horse in Model.NextEvent.Horses)
-		{
+	@foreach (var horse in Model.NextEvent.Horses.OrderByDescending(x => x.TotalAmountRaised))
+	{
+		<div class="col-sm-6">
 			@Html.Partial("_Horse", horse)
-		}
-    </div>
+		</div>
+	}
 </div>
