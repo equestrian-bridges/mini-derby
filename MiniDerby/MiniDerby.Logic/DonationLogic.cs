@@ -23,7 +23,7 @@ namespace MiniDerby.Logic
         public void SaveDonation(String transactionId, String firstName, String lastName, String email, Decimal totalAmount, Int32 horseId)
         {
             // Check to see if donation has already been saved
-            var existingDonation = Context.Donations.SingleOrDefault(x => x.StripeChargeId == transactionId);
+            var existingDonation = Context.Donations.SingleOrDefault(x => x.PaypalTransactionId == transactionId);
 
             if (existingDonation == null)
             {
@@ -33,7 +33,7 @@ namespace MiniDerby.Logic
                     Email = email,
                     HorseId = horseId,
                     Name = String.Format("{0} {1}", firstName, lastName),
-                    StripeChargeId = transactionId
+                    PaypalTransactionId = transactionId,
                 };
 
                 Context.Donations.Add(newDonation);

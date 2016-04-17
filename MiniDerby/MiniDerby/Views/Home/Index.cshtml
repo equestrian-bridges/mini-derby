@@ -10,14 +10,30 @@
 	{
 		<script type="text/javascript" src="~/Content/plugins/countdown/jquery.plugin.js"></script>
 		<script type="text/javascript" src="~/Content/plugins/countdown/jquery.countdown.min.js"></script>
-		<link rel="stylesheet" href="~/Content/plugins/countdown/jquery.countdown.css" />
 		<script>
-			$('#countdown').countdown({ until: new Date(@Model.NextEvent.EventDate.Value.ToString("yyyy,MM-1,dd")) });
+			$('#countdown').countdown(
+			{
+				until: new Date(@Model.NextEvent.EventStartDate.Value.ToString("yyyy,MM-1,dd")),
+				layout: '{d<} {dn} {dl} {d>} {hn} {hl} {mn} {ml} {sn} {sl}'
+			});
 		</script>
 	}
 
 	@section Countdown {
-		<div style="display: inline;" id="countdown" class="pull-right"></div>
+		<style>
+			#countdown-container {
+				display: inline-block; line-height: 1.8em; vertical-align: top;
+				color: white;
+			}
+			.header-fixed-shrink #countdown-container {
+				font-size: .7em;
+				/*line-height: .8*/
+			}
+		</style>
+		<div id="countdown-container">
+			<div id="countdown"></div>
+			<div>until the @Model.NextEvent.Name</div>
+		</div>
 	}
 }
 
@@ -31,7 +47,7 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        <h2>Next Event: @Model.NextEvent.EventDate.Value.ToShortDateString()</h2>
+        <h2>Next Event: @Model.NextEvent.EventStartDate.Value.ToShortDateString()</h2>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-8">

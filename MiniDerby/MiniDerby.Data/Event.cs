@@ -19,15 +19,19 @@ namespace MiniDerby.Data
         {
             this.Horses = new HashSet<Horse>();
             this.Sponsors = new HashSet<Sponsor>();
+            this.Donations = new HashSet<Donation>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<System.DateTime> EventDate { get; set; }
+        public Nullable<System.DateTime> EventStartDate { get; set; }
+        public Nullable<System.DateTime> EventEndDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Horse> Horses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sponsor> Sponsors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Donation> Donations { get; set; }
     }
 }

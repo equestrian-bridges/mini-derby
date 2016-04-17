@@ -18,9 +18,12 @@ namespace MiniDerby.Data
         public Nullable<int> HorseId { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
-        public string StripeChargeId { get; set; }
         public Nullable<decimal> Amount { get; set; }
+        public string PaypalTransactionId { get; set; }
+        public System.DateTime TransactionDate { get; set; }
+        public Nullable<int> EventId { get; set; }
     
         public virtual Horse Horse { get; set; }
+        public virtual Event Event { get; set; }
     }
 }
