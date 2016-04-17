@@ -30,11 +30,17 @@ namespace MiniDerby.Controllers
 
 			return View();
 		}
-       
 
         public ActionResult Horses()
 		{
-			return View();
+			var horses = this.EventLogic.GetHorses();
+			return View(horses);
+		}
+
+		public ActionResult Horse(Int32 id)
+		{
+			var horse = this.EventLogic.GetHorse(id);
+			return View(horse);
 		}
 	}
 }

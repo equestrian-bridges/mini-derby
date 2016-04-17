@@ -34,5 +34,31 @@ namespace MiniDerby.Logic
 							.Include(x => x.Horses.Select(y => y.Donations))
 							.Include(x => x.Sponsors);
 		}
+
+		public List<Horse> GetHorses()
+		{
+			var eventOfInterest = GetNextEvent();
+			if (eventOfInterest == null)
+			{
+				eventOfInterest = GetPreviousEvent();
+			}
+
+			return GetHorseBaseQuery()
+							.Where(x => x.EventId == eventOfInterest.Id)
+							.ToList();
+		}
+
+		public Horse GetHorse(Int32 id)
+		{
+			return GetHorseBaseQuery().Single(x => x.Id == id);
+		}
+
+		private IQueryable<Horse> GetHorseBaseQuery()
+		{
+			return this.Context.Horses
+							.Include(x => x.Donations)
+							.Include(x => x.Event)
+							.Include(x => x.Sponsor);
+		}
 	}
 }

@@ -1,15 +1,24 @@
-﻿@model MiniDerby.Models.Home.IndexViewModel
+﻿@model List<MiniDerby.Data.Horse>
+
 @{
     ViewBag.Title = "Horses";
 }
 
-<h2>Horses</h2>
+<h1>Horses</h1>
 
 <div class="row">
-    <div class="col-md-8">
-        @foreach (var horse in Model.NextEvent.Horses)
-        {
-            @Html.Partial("_Horse", horse)
-        }
+    <div class="col-xs-12">
+        @{ var i = 1; }
+		@foreach (var horse in Model.OrderByDescending(x => x.TotalAmountRaised))
+		{
+		<div class="col-sm-6">
+			@Html.Partial("_Horse", horse, new ViewDataDictionary { { "Index", i } })
+		</div>
+			if (i % 2 == 0)
+			{
+			<div class="clearfix"></div>
+			}
+			i++;
+		}
     </div>
 </div>
