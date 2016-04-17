@@ -19,5 +19,12 @@ namespace MiniDerby
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
         }
+
+		void Application_Error(object sender, EventArgs e)
+		{
+			var httpUnhandledException = new HttpUnhandledException(Server.GetLastError().Message, Server.GetLastError());
+			
+			// TODO: Log or email this
+		}
 	}
 }
