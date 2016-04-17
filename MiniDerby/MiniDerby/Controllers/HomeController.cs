@@ -31,6 +31,11 @@ namespace MiniDerby.Controllers
 			return View();
 		}
        
+        public ActionResult SponsorInformation()
+        {
+            ViewBag.Message = "Becoming a sponsor!";
+            return View();
+        }
 
         public ActionResult Horses()
 		{
