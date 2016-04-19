@@ -9,6 +9,9 @@ namespace MiniDerby.Logic
 {
     public class LoggingLogic : BaseLogic
     {
+		public LoggingLogic() : base(new DefaultConnection())
+		{ }
+
         public LoggingLogic(DefaultConnection context) : base(context)
         { }
 

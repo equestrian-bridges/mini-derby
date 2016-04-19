@@ -26,7 +26,7 @@ namespace MiniDerby.Controllers
                 if (parameters != null)
                 {
                     // Set the first parameter to false when putting in production
-                    if (GetVerificationCode(true, parameters) == "VERIFIED")
+                    if (GetVerificationCode(false, parameters) == "VERIFIED")
                     {
                         var horseId = Int32.Parse(payPalCheckoutInfo.custom);
                         this.DonationLogic.SaveDonation(payPalCheckoutInfo.txn_id, payPalCheckoutInfo.first_name, payPalCheckoutInfo.last_name, payPalCheckoutInfo.payer_email, payPalCheckoutInfo.Total, horseId);

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using MiniDerby.Logic;
 
 namespace MiniDerby
 {
@@ -23,8 +24,11 @@ namespace MiniDerby
 		void Application_Error(object sender, EventArgs e)
 		{
 			var httpUnhandledException = new HttpUnhandledException(Server.GetLastError().Message, Server.GetLastError());
-			
-			// TODO: Log or email this
+
+			using (var logic = new LoggingLogic())
+			{
+				logic.LogException(httpUnhandledException);
+			}
 		}
 	}
 }

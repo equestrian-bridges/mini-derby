@@ -10,16 +10,23 @@ namespace MiniDerby.Tools
 {
     public class BaseController : Controller
     {
+		private readonly DefaultConnection _context;
 		public DonationLogic DonationLogic { get; set; }
 		public EventLogic EventLogic { get; set; }
         public LoggingLogic LoggingLogic { get; set; }
 
 		public BaseController()
 		{
-			var context = new DefaultConnection();
-			this.DonationLogic = new DonationLogic(context);
-            this.LoggingLogic = new LoggingLogic(context);
-			this.EventLogic = new EventLogic(context);
+			_context = new DefaultConnection();
+			this.DonationLogic = new DonationLogic(_context);
+            this.LoggingLogic = new LoggingLogic(_context);
+			this.EventLogic = new EventLogic(_context);
+		}
+
+		public new void Dispose()
+		{
+			_context.Dispose();
+			base.Dispose();
 		}
     }
 }

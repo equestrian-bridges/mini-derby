@@ -7,7 +7,7 @@ using MiniDerby.Data;
 
 namespace MiniDerby.Logic
 {
-	public class BaseLogic
+	public class BaseLogic : IDisposable
 	{
 		protected MiniDerby.Data.DefaultConnection Context { get; set; }
 
@@ -21,6 +21,11 @@ namespace MiniDerby.Logic
 			{
 				this.Context = new Data.DefaultConnection();
 			}
+		}
+
+		public void Dispose()
+		{
+			((IDisposable)Context).Dispose();
 		}
 	}
 }
