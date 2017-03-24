@@ -53,10 +53,20 @@
 			<img class="img-responsive img-circle" style="max-height:200px;" src="@String.Format("https://miniderby.blob.core.windows.net/horse/{0}_profile.png", Model.Id)" alt="">
 		</div>
 		<div class="col-xs-8 col-md-6">
-			<h2>
-				<small>Presented By</small><br />
-				@Model.Sponsor.Name
-			</h2>
+			@if (Model.Sponsor != null)
+			{
+				<h2>
+					<small>Presented By</small><br />
+					@Model.Sponsor.Name
+				</h2>
+			}
+			else
+			{
+			<h3>
+				No Sponsor Yet!
+				@Html.ActionLink("Sponsor " + Model.Name, "SponsorInformation", null, new { @class="btn btn-u btn-u-light-blue" })
+			</h3>
+			}
 
 			@if (Model.Event.EventStartDate.Value > DateTime.Today)
 			{
